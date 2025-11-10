@@ -8,6 +8,11 @@ import Page from "./collection/page";
 import Tag from "./collection/tag";
 
 const config = defineConfig({
+  tinaioConfig: {
+        frontendUrlOverride: 'http://localhost:3002',
+        identityApiUrlOverride: 'https://pat-stuart-identity.tinajs.dev',
+        contentApiUrlOverride: 'https://pat-stuart-content.tinajs.dev',
+  },
   clientId: process.env.NEXT_PUBLIC_TINA_CLIENT_ID!,
   branch:
     process.env.NEXT_PUBLIC_TINA_BRANCH! || // custom branch env override
