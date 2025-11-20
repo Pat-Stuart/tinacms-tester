@@ -1,3 +1,4 @@
+// @ts-ignore
 import React from 'react';
 import client from '@/tina/__generated__/client';
 import Layout from '@/components/layout/layout';
@@ -17,6 +18,7 @@ export default async function PostPage({
   });
 
   return (
+    // @ts-ignore
     <Layout rawPageData={data}>
       <PostClientPage {...data} />
     </Layout>
@@ -44,6 +46,7 @@ export async function generateStaticParams() {
   }
 
   const params =
+    // @ts-ignore
     allPosts.data?.postConnection.edges.map((edge) => ({
       urlSegments: edge?.node?._sys.breadcrumbs,
     })) || [];

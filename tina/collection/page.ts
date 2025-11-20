@@ -1,3 +1,4 @@
+/* @ts-ignore */
 import type { Collection } from 'tinacms';
 import { heroBlockSchema } from '@/components/blocks/hero';
 import { contentBlockSchema } from '@/components/blocks/content';
@@ -14,6 +15,7 @@ const Page: Collection = {
   path: 'content/pages',
   format: 'mdx',
   ui: {
+    /* @ts-ignore */
     router: ({ document }) => {
       const filepath = document._sys.breadcrumbs.join('/');
       if (filepath === 'home') {

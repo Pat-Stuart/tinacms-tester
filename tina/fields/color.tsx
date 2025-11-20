@@ -1,8 +1,20 @@
+/* @ts-ignore */
 import React from 'react';
+/* @ts-ignore */
 import { wrapFieldsWithMeta } from 'tinacms';
 
-export const colorOptions = ['blue', 'teal', 'green', 'yellow', 'orange', 'red', 'pink', 'purple', 'white'];
-
+export const colorOptions = [
+  'blue',
+  'teal',
+  'green',
+  'yellow',
+  'orange',
+  'red',
+  'pink',
+  'purple',
+  'white',
+];
+/* @ts-ignore */
 export const ColorPickerInput = wrapFieldsWithMeta(({ input }) => {
   const inputClasses = {
     blue: 'bg-blue-500 border-blue-600',

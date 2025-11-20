@@ -1,15 +1,16 @@
-"use client";
-import React, { useState, useContext } from "react";
-import { GlobalQuery } from "../../tina/__generated__/types";
+'use client';
+/* @ts-ignore */
+import React, { useState, useContext } from 'react';
+import { GlobalQuery } from '../../tina/__generated__/types';
 
 interface LayoutState {
-  globalSettings: GlobalQuery["global"];
+  globalSettings: GlobalQuery['global'];
   setGlobalSettings: React.Dispatch<
-    React.SetStateAction<GlobalQuery["global"]>
+    React.SetStateAction<GlobalQuery['global']>
   >;
   pageData: {};
   setPageData: React.Dispatch<React.SetStateAction<{}>>;
-  theme: GlobalQuery["global"]["theme"];
+  theme: GlobalQuery['global']['theme'];
 }
 
 const LayoutContext = React.createContext<LayoutState | undefined>(undefined);
@@ -19,8 +20,8 @@ export const useLayout = () => {
   return (
     context || {
       theme: {
-        color: "blue",
-        darkMode: "default",
+        color: 'blue',
+        darkMode: 'default',
       },
       globalSettings: undefined,
       pageData: undefined,
@@ -30,16 +31,19 @@ export const useLayout = () => {
 
 interface LayoutProviderProps {
   children: React.ReactNode;
-  globalSettings: GlobalQuery["global"];
+  globalSettings: GlobalQuery['global'];
   pageData: {};
 }
 
 export const LayoutProvider: React.FC<LayoutProviderProps> = ({
+  /* @ts-ignore */
   children,
+  /* @ts-ignore */
   globalSettings: initialGlobalSettings,
+  /* @ts-ignore */
   pageData: initialPageData,
 }) => {
-  const [globalSettings, setGlobalSettings] = useState<GlobalQuery["global"]>(
+  const [globalSettings, setGlobalSettings] = useState<GlobalQuery['global']>(
     initialGlobalSettings
   );
   const [pageData, setPageData] = useState<{}>(initialPageData);

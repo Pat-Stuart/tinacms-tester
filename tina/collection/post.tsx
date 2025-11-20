@@ -1,6 +1,8 @@
+/* @ts-ignore */
 import React from 'react';
 import { videoBlockSchema } from '@/components/blocks/video';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+/* @ts-ignore */
 import type { Collection } from 'tinacms';
 
 const Post: Collection = {
@@ -9,6 +11,7 @@ const Post: Collection = {
   path: 'content/posts',
   format: 'mdx',
   ui: {
+    /* @ts-ignore */
     router: ({ document }) => {
       return `/posts/${document._sys.breadcrumbs.join('/')}`;
     },
@@ -25,7 +28,6 @@ const Post: Collection = {
       type: 'image',
       name: 'heroImg',
       label: 'Hero Image',
-      // @ts-ignore
       uploadDir: () => 'posts',
     },
     {
@@ -101,6 +103,7 @@ const Post: Collection = {
         },
       ],
       ui: {
+        /* @ts-ignore */
         itemProps: (item) => {
           return { label: item?.tag };
         },

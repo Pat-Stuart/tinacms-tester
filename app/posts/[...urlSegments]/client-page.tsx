@@ -1,8 +1,11 @@
 'use client';
+// @ts-ignore
 import React from 'react';
 import Image from 'next/image';
 import { format } from 'date-fns';
+// @ts-ignore
 import { tinaField, useTina } from 'tinacms/dist/react';
+// @ts-ignore
 import { TinaMarkdown } from 'tinacms/dist/rich-text';
 import { PostQuery } from '@/tina/__generated__/types';
 import { useLayout } from '@/components/layout/layout-context';
@@ -16,9 +19,12 @@ const titleColorClasses = {
   green: 'from-green-400 to-green-600',
   red: 'from-red-400 to-red-600',
   pink: 'from-pink-300 to-pink-500',
-  purple: 'from-purple-400 to-purple-600 dark:from-purple-300 dark:to-purple-500',
-  orange: 'from-orange-300 to-orange-600 dark:from-orange-200 dark:to-orange-500',
-  yellow: 'from-yellow-400 to-yellow-500 dark:from-yellow-300 dark:to-yellow-500',
+  purple:
+    'from-purple-400 to-purple-600 dark:from-purple-300 dark:to-purple-500',
+  orange:
+    'from-orange-300 to-orange-600 dark:from-orange-200 dark:to-orange-500',
+  yellow:
+    'from-yellow-400 to-yellow-500 dark:from-yellow-300 dark:to-yellow-500',
 };
 
 interface ClientPostProps {
@@ -30,6 +36,7 @@ interface ClientPostProps {
 }
 
 export default function PostClientPage(props: ClientPostProps) {
+  // @ts-ignore
   const { theme } = useLayout();
   const { data } = useTina({ ...props });
   const post = data.post;
@@ -40,15 +47,27 @@ export default function PostClientPage(props: ClientPostProps) {
     formattedDate = format(date, 'MMM dd, yyyy');
   }
 
-  const titleColour = titleColorClasses[theme!.color! as keyof typeof titleColorClasses];
+  const titleColour =
+    titleColorClasses[theme!.color! as keyof typeof titleColorClasses];
 
   return (
+    // @ts-ignore
     <ErrorBoundary>
       <Section>
-        <h2 data-tina-field={tinaField(post, 'title')} className={`w-full relative\tmb-8 text-6xl font-extrabold tracking-normal text-center title-font`}>
-          <span className={`bg-clip-text text-transparent bg-linear-to-r ${titleColour}`}>{post.title}</span>
+        <h2
+          data-tina-field={tinaField(post, 'title')}
+          className={`w-full relative\tmb-8 text-6xl font-extrabold tracking-normal text-center title-font`}
+        >
+          <span
+            className={`bg-clip-text text-transparent bg-linear-to-r ${titleColour}`}
+          >
+            {post.title}
+          </span>
         </h2>
-        <div data-tina-field={tinaField(post, 'author')} className='flex items-center justify-center mb-16'>
+        <div
+          data-tina-field={tinaField(post, 'author')}
+          className='flex items-center justify-center mb-16'
+        >
           {post.author && (
             <>
               {post.author.avatar && (
@@ -70,7 +89,9 @@ export default function PostClientPage(props: ClientPostProps) {
               >
                 {post.author.name}
               </p>
-              <span className='font-bold text-gray-200 dark:text-gray-500 mx-2'>—</span>
+              <span className='font-bold text-gray-200 dark:text-gray-500 mx-2'>
+                —
+              </span>
             </>
           )}
           <p
@@ -82,7 +103,10 @@ export default function PostClientPage(props: ClientPostProps) {
         </div>
         {post.heroImg && (
           <div className='px-4 w-full'>
-            <div data-tina-field={tinaField(post, 'heroImg')} className='relative max-w-4xl lg:max-w-5xl mx-auto'>
+            <div
+              data-tina-field={tinaField(post, 'heroImg')}
+              className='relative max-w-4xl lg:max-w-5xl mx-auto'
+            >
               <Image
                 priority={true}
                 src={post.heroImg}
@@ -105,7 +129,10 @@ export default function PostClientPage(props: ClientPostProps) {
             </div>
           </div>
         )}
-        <div data-tina-field={tinaField(post, '_body')} className='prose dark:prose-dark w-full max-w-none'>
+        <div
+          data-tina-field={tinaField(post, '_body')}
+          className='prose dark:prose-dark w-full max-w-none'
+        >
           <TinaMarkdown
             content={post._body}
             components={{

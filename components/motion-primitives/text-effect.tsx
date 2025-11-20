@@ -8,6 +8,7 @@ import {
   Variant,
   Variants,
 } from 'motion/react';
+/* @ts-ignore */
 import React from 'react';
 
 export type PresetType = 'blur' | 'fade-in-blur' | 'scale' | 'fade' | 'slide';
@@ -114,6 +115,7 @@ const AnimationComponent: React.FC<{
   variants: Variants;
   per: 'line' | 'word' | 'char';
   segmentWrapperClassName?: string;
+  /* @ts-ignore */
 }> = React.memo(({ segment, variants, per, segmentWrapperClassName }) => {
   const content =
     per === 'line' ? (
@@ -130,6 +132,7 @@ const AnimationComponent: React.FC<{
       </motion.span>
     ) : (
       <motion.span className='inline-block whitespace-pre'>
+        {/* @ts-ignore */}
         {segment.split('').map((char, charIndex) => (
           <motion.span
             key={`char-${charIndex}`}

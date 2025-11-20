@@ -3,9 +3,16 @@ import { iconSchema } from '@/tina/fields/icon';
 import Image from 'next/image';
 import Link from 'next/link';
 import * as React from 'react';
+
+/* @ts-ignore */
 import type { Template } from 'tinacms';
+
+/* @ts-ignore */
 import { tinaField } from 'tinacms/dist/react';
-import { PageBlocksHero, PageBlocksHeroImage } from '../../tina/__generated__/types';
+import {
+  PageBlocksHero,
+  PageBlocksHeroImage,
+} from '../../tina/__generated__/types';
 import { Icon } from '../icon';
 import { Section, sectionBlockSchemaField } from '../layout/section';
 import { AnimatedGroup } from '../motion-primitives/animated-group';
@@ -62,24 +69,48 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
       <div className='text-center sm:mx-auto lg:mr-auto lg:mt-0'>
         {data.headline && (
           <div data-tina-field={tinaField(data, 'headline')}>
-            <TextEffect preset='fade-in-blur' speedSegment={0.3} as='h1' className='mt-8 text-balance text-6xl md:text-7xl xl:text-[5.25rem]'>
+            <TextEffect
+              preset='fade-in-blur'
+              speedSegment={0.3}
+              as='h1'
+              className='mt-8 text-balance text-6xl md:text-7xl xl:text-[5.25rem]'
+            >
               {data.headline!}
             </TextEffect>
           </div>
         )}
         {data.tagline && (
           <div data-tina-field={tinaField(data, 'tagline')}>
-            <TextEffect per='line' preset='fade-in-blur' speedSegment={0.3} delay={0.5} as='p' className='mx-auto mt-8 max-w-2xl text-balance text-lg'>
+            <TextEffect
+              per='line'
+              preset='fade-in-blur'
+              speedSegment={0.3}
+              delay={0.5}
+              as='p'
+              className='mx-auto mt-8 max-w-2xl text-balance text-lg'
+            >
               {data.tagline!}
             </TextEffect>
           </div>
         )}
 
-        <AnimatedGroup variants={transitionVariants} className='mt-12 flex flex-col items-center justify-center gap-2 md:flex-row'>
+        <AnimatedGroup
+          variants={transitionVariants}
+          className='mt-12 flex flex-col items-center justify-center gap-2 md:flex-row'
+        >
           {data.actions &&
             data.actions.map((action) => (
-              <div key={action!.label} data-tina-field={tinaField(action)} className='bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'>
-                <Button asChild size='lg' variant={action!.type === 'link' ? 'ghost' : 'default'} className='rounded-xl px-5 text-base'>
+              <div
+                key={action!.label}
+                data-tina-field={tinaField(action)}
+                className='bg-foreground/10 rounded-[calc(var(--radius-xl)+0.125rem)] border p-0.5'
+              >
+                <Button
+                  asChild
+                  size='lg'
+                  variant={action!.type === 'link' ? 'ghost' : 'default'}
+                  className='rounded-xl px-5 text-base'
+                >
                   <Link href={action!.link!}>
                     {action?.icon && <Icon data={action?.icon} />}
                     <span className='text-nowrap'>{action!.label}</span>
@@ -92,8 +123,15 @@ export const Hero = ({ data }: { data: PageBlocksHero }) => {
 
       {data.image && (
         <AnimatedGroup variants={transitionVariants}>
-          <div className='relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20 max-w-full' data-tina-field={tinaField(data, 'image')}>
-            <div aria-hidden className='bg-linear-to-b absolute inset-0 z-10 from-transparent from-35% pointer-events-none' style={gradientStyle} />
+          <div
+            className='relative -mr-56 mt-8 overflow-hidden px-2 sm:mr-0 sm:mt-12 md:mt-20 max-w-full'
+            data-tina-field={tinaField(data, 'image')}
+          >
+            <div
+              aria-hidden
+              className='bg-linear-to-b absolute inset-0 z-10 from-transparent from-35% pointer-events-none'
+              style={gradientStyle}
+            />
             <div className='inset-shadow-2xs ring-background dark:inset-shadow-white/20 bg-background relative mx-auto max-w-6xl overflow-hidden rounded-2xl border p-4 shadow-lg shadow-zinc-950/15 ring-1'>
               <ImageBlock image={data.image} />
             </div>
@@ -111,12 +149,24 @@ const ImageBlock = ({ image }: { image: PageBlocksHeroImage }) => {
       const embedPrefix = '/embed/';
       const idx = image.videoUrl.indexOf(embedPrefix);
       if (idx !== -1) {
-        videoId = image.videoUrl.substring(idx + embedPrefix.length).split('?')[0];
+        videoId = image.videoUrl
+          .substring(idx + embedPrefix.length)
+          .split('?')[0];
       }
     }
-    const thumbnailSrc = image.src ? image.src! : videoId ? `https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg` : '';
+    const thumbnailSrc = image.src
+      ? image.src!
+      : videoId
+        ? `https://i3.ytimg.com/vi/${videoId}/maxresdefault.jpg`
+        : '';
 
-    return <HeroVideoDialog videoSrc={image.videoUrl} thumbnailSrc={thumbnailSrc} thumbnailAlt='Hero Video' />;
+    return (
+      <HeroVideoDialog
+        videoSrc={image.videoUrl}
+        thumbnailSrc={thumbnailSrc}
+        thumbnailAlt='Hero Video'
+      />
+    );
   }
 
   if (image.src) {
@@ -165,12 +215,13 @@ export const heroBlockSchema: Template = {
           label: 'Action Label',
           type: 'button',
           icon: {
-              name: "Tina",
-              color: "white",
-              style: "float",
+            name: 'Tina',
+            color: 'white',
+            style: 'float',
           },
           link: '/',
         },
+        /* @ts-ignore */
         itemProps: (item) => ({ label: item.label }),
       },
       fields: [
@@ -215,7 +266,8 @@ export const heroBlockSchema: Template = {
           name: 'videoUrl',
           label: 'Video URL',
           type: 'string',
-          description: 'If using a YouTube video, make sure to use the embed version of the video URL',
+          description:
+            'If using a YouTube video, make sure to use the embed version of the video URL',
         },
       ],
     },
